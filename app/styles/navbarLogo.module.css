@@ -1,0 +1,26 @@
+.navbarStartContainer {
+  width: fit-content;
+  height: 6rem;
+  display: grid;
+  grid-template-columns: auto 2fr;
+  column-gap: 10px;
+  align-items: center;
+  color: white;
+  margin-left: 1rem;
+}
+
+.navbarStartLogoSpan {
+  font-size: 3rem;
+  font-weight: 800;
+  align-content: center;
+}
+
+.navbarStartTitleSpan {
+  text-wrap: nowrap;
+  font-size: 24px;
+  font-weight: 700;
+  grid-column: 3;
+  align-content: center;
+  padding-top: 0.8rem;
+}
+
