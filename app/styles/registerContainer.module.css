@@ -1,0 +1,28 @@
+.registerContainer {
+  width: 400px;
+  height: 92px;
+  background-color: #ecedf5;
+  border: 0.5px 0px 0px 0px;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.registerLink {
+  color: red;
+}
+
+.addUserIcon {
+  margin: 0 30px;
+  font-size: 95px;
+}
+
+.goToRegisterContainer {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 17px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

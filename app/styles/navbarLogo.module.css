@@ -1,6 +1,6 @@
 .navbarStartContainer {
   width: fit-content;
-  height: 6rem;
+  height: 100%;
   display: grid;
   grid-template-columns: auto 2fr;
   column-gap: 10px;

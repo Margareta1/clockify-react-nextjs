@@ -1,0 +1,59 @@
+.trackerContainer {
+  width: 100vw;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendarTitle {
+  margin: 1rem 8rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.calendarIcon {
+  font-size: 24px;
+  margin: 10px;
+}
+
+.calendarToday {
+  align-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 17px;
+}
+
+.trackerButtonsContainer {
+  display: flex;
+  justify-content: end;
+  margin: 0.8rem 8rem;
+}
+
+.stopwatchIcon, .stopAllIcon {
+  font-size: 24px;
+}
+
+.trackerButton {
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  color: white;
+  margin: 10px;
+  gap: 10px;
+}
+
+.startTimerButton {
+  background-color: #ff5722;
+  border: 1px solid #ff5722;
+}
+
+.stopAllButton{
+    background-color: #181846;
+    border: 1px solid #181846;
+}
+
+.timersTableContainer{
+    margin: 1rem 8rem;
+}

@@ -1,0 +1,45 @@
+.loginForm {
+  width: 400px;
+  height: 370px;
+  border: 0.5px 0px 0px 0px;
+  opacity: 0px;
+  background-color: #ecedf5;
+  text-align: center;
+}
+
+.loginTitle {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 17px;
+  margin: 30px;
+}
+
+.inputText {
+  border: none;
+  width: 330px;
+  height: 42px;
+  gap: 0px;
+  opacity: 0px;
+  margin: 20px;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.loginButton {
+  width: 330px;
+  height: 36px;
+  opacity: 0px;
+  border: 1px solid #FF5722;
+  background-color: #FF5722;
+  margin:25px;
+  border-radius: 4px;
+}
+
+.loginButtonText{
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  text-align: center;
+  color:white;
+  width: 100%;
+}

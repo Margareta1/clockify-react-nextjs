@@ -1,8 +1,15 @@
-import '../styles/global.css'
-import { CustomLayout } from '@/app/layout/CustomLayout';
+import "../styles/global.css";
+import { CustomLayout } from "@/app/layout/CustomLayout";
+import { PrimeReactProvider } from "primereact/api";
 
 const App = ({ Component, pageProps }) => {
-  return <CustomLayout><Component {...pageProps} /></CustomLayout>;
+  return (
+    <PrimeReactProvider>
+      <CustomLayout>
+        <Component {...pageProps} />
+      </CustomLayout>
+    </PrimeReactProvider>
+  );
 };
 
 export default App;

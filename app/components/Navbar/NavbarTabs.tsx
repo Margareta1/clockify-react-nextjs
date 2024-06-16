@@ -4,21 +4,18 @@ import { MenuItem } from "primereact/menuitem";
 import { useRouter } from "next/router";
 
 const items: MenuItem[] = [
-  { label: "Trackers", icon: "pi pi-spin pi-spinner" },
-  { label: "History", icon: "pi-history" },
-  { label: "Logout" },
+  { label: "Trackers", icon: "pi pi-clock" },
+  { label: "History", icon: "pi pi-history" },
+  { label: "Logout", icon: "pi pi-power-off"},
 ];
 
 const NavbarTabs = () => {
-  // const [activeIndex, setActiveIndex] = useState(0);
-  const router = useRouter();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const handleChangeIndex = (e: TabMenuTabChangeEvent) => {
+    setActiveIndex(e.index);
+  }
 
-  useEffect(() => {}, [router.pathname]);
-  // const changeActiveIndex = (e: TabMenuTabChangeEvent) => {
-  //   setActiveIndex(e.index);
-  // };
-
-  return <TabMenu model={items} />;
+  return <TabMenu model={items} activeIndex={activeIndex} onTabChange={handleChangeIndex} />;
 };
 
 export { NavbarTabs };

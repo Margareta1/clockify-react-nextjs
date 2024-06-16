@@ -1,34 +1,129 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap");
+@import "primeicons/primeicons.css";
 
 * {
-  width:100%;
-  max-width: 100vw;
-  margin:0;
-  padding:0;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  max-width: 100%;
 }
 
-#pr_id_2{
+.p-megamenu.p-component.p-megamenu-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: blue;
-  min-height: 6rem;
+  height: 112px;
   background-color: #181846;
   border-radius: 0 0 22px 22px;
+  overflow: hidden;
+  width: 100vw;
 }
 
-#pr_id_2 > a{
-  display:none;
-} 
+.p-megamenu.p-component.p-megamenu-horizontal > a {
+  display: none;
+}
 
-span.p-ink{
-  color:white;
+span.p-ink {
+  color: white;
   background-color: white;
 }
 
-.p-tabmenuitem span.p-menuitem-text{
-  color:#C4C5D7;
+.p-tabmenuitem span {
+  color: #c4c5d7;
   font-weight: 600;
 }
-.p-tabmenuitem.p-highlight span.p-menuitem-text{
-  color:white;
+.p-tabmenuitem.p-highlight span {
+  color: white;
   font-weight: 700;
+}
+
+.p-tabmenuitem {
+  border-bottom: 5px solid transparent;
+}
+
+.p-tabmenuitem:hover {
+  border-color: #c4c5d7;
+}
+
+.p-tabmenuitem.p-highlight {
+  border-color: #ff5722;
+}
+
+.p-tabmenu-nav {
+  height: 112px;
+}
+
+.p-tabmenu-nav .p-tabmenuitem {
+  display: flex;
+  padding-right: 10px;
+}
+
+.p-tabmenu-nav .p-tabmenuitem span {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.p-datatable-wrapper {
+  border: 0.5px solid #ecedf5;
+  border-radius: 4px;
+}
+
+.p-datatable-thead {
+  background-color: #ecedf5;
+  padding: 20px;
+  height: 60px;
+}
+
+.p-column-header-content {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 17px;
+  color: #0c0d25;
+  padding: 20px;
+}
+
+.p-datatable-emptymessage {
+  text-align: center;
+  height: 50px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #5f6b8a;
+}
+
+td {
+  color: #5f6b8a;
+  padding: 20px;
+  border: 0.5px solid #ecedf5;
+}
+
+.p-paginator-bottom {
+  margin-top: 20px;
+}
+
+.p-paginator-pages {
+  width: 33px;
+  height: 33px;
+  background-color: #c4c5d7;
+  line-height: 14px;
+  text-align: center;
+  align-content: center;
+  border-radius: 4px;
+}
+.p-paginator-page {
+  display: none;
+}
+.p-paginator-page.p-highlight {
+  display: flex;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+}
+
+.p-dialog-header-icon {
+  color: white;
+  font-size: larger;
+  padding: 10px;
+  font-weight: 900;
 }
