@@ -1,22 +1,30 @@
-import {
-  formatStopwatchTime,
-  getTodaysDate,
-} from "@/app/helpers/trackerHelpers";
-import styles from "../styles/trackerPage.module.css";
 import { Button } from "primereact/button";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
-import { Timer, TimerForm } from "@/app/types/stopwatchTypes";
-import { useState } from "react";
-import {TimerActions} from "@/app/components/Stopwatch/TimerActions";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect, useState } from "react";
+import {
+  EMPTY_TABLE_MESSAGE,
+  getTodaysDate,
+  mapTracker,
+  mapTrackerTableData,
+} from "@/app/helpers";
+import { auth, trackerTableColumns } from "@/app/configurations";
+import { createTimer, getAllTimers, stopAllTimers, deleteTimer, editTimer } from "@/app/api";
+import styles from "../app/styles/trackerPage.module.css";
+import { Timer } from "@/app/types/timerTypes";
 
-const EMPTY_MESSAGE = "No data"
 
 const Tracker = () => {
   const [timers, setTimers] = useState<Timer[]>([]);
-  const [form, setForm] = useState<TimerForm>({
-    description: "",
-  });
+  const { value } = getAllTimers();
+  const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    if (value) {
+      setTimers(mapTracker({value:value?.docs, userId:user?.uid}));
+    }
+  }, [value]);
 
   const handleStart = (id: string) => {
     setTimers((prevTimers) =>
@@ -36,65 +44,62 @@ const Tracker = () => {
     );
   };
 
-  const handleStopAll = () => {
+  const handleStopAll = async () => {
     setTimers((prevTimers) =>
       prevTimers.map((timer) => ({ ...timer, isRunning: false }))
     );
+    try {
+      const msg = await stopAllTimers();
+    } catch (err) {
+      throw new Error("Error while stopping all timers");
+    }
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     setTimers((prevTimers) => prevTimers.filter((timer) => timer.id !== id));
+    try {
+      const msg = await deleteTimer(id);
+    } catch (err) {
+      throw new Error("Error while deleting timer");
+    }
   };
 
-  const handleEdit = (id: string, description: string, duration: number) => {
+  const handleEdit = async (
+    id: string,
+    description: string,
+    duration: number
+  ) => {
     setTimers((prevTimers) =>
       prevTimers.map((timer) =>
         timer.id === id ? { ...timer, description, duration } : timer
       )
     );
+    try {
+      const msg = await editTimer(id, { description, duration });
+    } catch (err) {
+      throw new Error("Error while editing timer")
+    }
   };
 
-  const handleAddTimer = () => {
+  const handleAddTimer = async () => {
     handleStopAll();
     const newTimer: Timer = {
-      id: String(timers.length + 1),
-      description: form.description || "New Timer",
+      localId: String(timers.length + 1),
+      description: "New Timer",
       duration: 0,
       isRunning: true,
+      date: getTodaysDate(),
+      userId: user?.uid ? user.uid : "",
     };
     setTimers((prevTimers) => [...prevTimers, newTimer]);
-    setForm({ description: "" });
+    try {
+      const msg = await createTimer(newTimer);
+    } catch (err: any) {
+      throw new Error("Error while adding timer");
+    }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  };
-
-  const timersData = timers.sort((a:Timer, b:Timer) => Number(b.id)-Number(a.id)).map((timer) => ({
-    id: timer.id,
-    formattedTime: formatStopwatchTime(timer.duration),
-    description: timer.description,
-    actions: (
-      <TimerActions
-        timer={timer}
-        onStart={handleStart}
-        onStop={handleStop}
-        onStopAll={handleStopAll}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-      />
-    ),
-  }));
-
-  const columns = [
-    { field: "formattedTime", header: "Time logged", width: '20%' },
-    { field: "description", header: "Description", width: '50%' },
-    { field: "actions", header: "Actions", width: '30%' },
-  ];
+  const timersData = mapTrackerTableData({timers,handleStart, handleStop, handleStopAll, handleEdit, handleDelete});
 
   return (
     <div className={styles.trackerContainer}>
@@ -119,15 +124,25 @@ const Tracker = () => {
         </Button>
       </div>
 
-      <div className={styles.timersTableContainer} >
-        <DataTable value={timersData} paginator rows={5} emptyMessage={EMPTY_MESSAGE}>
-          {columns.map((col) => (
-            <Column key={col.field} field={col.field} header={col.header} style={{width: col.width}}  />
+      <div className={styles.timersTableContainer}>
+        <DataTable
+          value={timersData}
+          paginator
+          rows={5}
+          emptyMessage={EMPTY_TABLE_MESSAGE}
+        >
+          {trackerTableColumns.map((col) => (
+            <Column
+              key={col.field}
+              field={col.field}
+              header={col.header}
+              style={{ width: col.width }}
+            />
           ))}
         </DataTable>
       </div>
     </div>
   );
-}
+};
 
 export default Tracker;

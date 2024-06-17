@@ -1,10 +1,9 @@
-import { CustomNavbar } from "../components/Navbar/Navbar";
+import { CustomNavbar } from "../components";
 
-const CustomLayout = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
+interface Props {
+  children: Readonly<{ children: React.ReactNode}>;
+}
+const CustomLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <CustomNavbar />

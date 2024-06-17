@@ -1,13 +1,26 @@
-import { AuthForm } from "@/app/components/Login/AuthForm";
-import styles from "../styles/loginPage.module.css";
-import { RegisterContainer } from "@/app/components/Login/RegisterContainer";
-import { AuthType } from "@/app/types/loginTypes";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { RegisterContainer, LoginForm } from "@/app/components";
+import { auth } from "@/app/configurations";
+import styles from "../app/styles/authPage.module.css";
 
-export default function Login() {
+const Login = () => {
+  const [user] = useAuthState(auth);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push("/tracker");
+    }
+  }, [user]);
+
   return (
     <div className={styles.loginContainer}>
-      <AuthForm type={AuthType.LOGIN} />
+      <LoginForm />
       <RegisterContainer />
     </div>
   );
 }
+
+export default Login;

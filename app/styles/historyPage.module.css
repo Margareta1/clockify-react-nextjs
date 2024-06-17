@@ -1,0 +1,62 @@
+.historyContainer {
+  width: 100vw;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.historyTitle {
+  margin: 1rem 8rem;
+  display: flex;
+  flex-direction: row;
+  color: #0c0d25;
+}
+
+.historyFilters {
+  margin: 1rem 8rem;
+  height: 111px;
+  border-radius: 4px;
+  background-color: #f9f9fd;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 8rem;
+  justify-content: center;
+}
+
+.filtersFlexContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem;
+}
+
+.filtersFlexContainer p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  text-align: left;
+  width: 33%;
+  color: #5f6b8a;
+}
+
+.filtersFlexContainer div {
+  width: 31%;
+  margin-left: 1%;
+}
+
+.historyFilterInputs {
+  width: 320px;
+  height: 42px;
+  padding: 0;
+  padding-left: 10px;
+  color: #5f6b8a;
+  border: 1px solid white;
+  background-color: white;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.timersTableContainer{
+  margin: 1rem 8rem;
+}
+
